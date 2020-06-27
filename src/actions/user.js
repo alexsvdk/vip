@@ -63,30 +63,30 @@ export function logoutUser() {
 export function loginUser(creds) {
   const config = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
-    body: `login=${creds.login}&password=${creds.password}`,
+    body: JSON.stringify(creds),
   };
   
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
     if(process.env.NODE_ENV === "development") {
-    return fetch('/login', config)
-      .then(response => response.json().then(user => ({ user, response })))
-      .then(({ user, response }) => {
+    return fetch(appConfig.baseURLApi+'/auth', config)
+      .then(response => response.json().then(json => ({ json, response })))
+      .then(({ json, response }) => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
-          dispatch(loginError(user.message));
-          return Promise.reject(user);
+          dispatch(loginError(json.body.error));
+          return Promise.reject(json.body);
         }
         // in posts create new action and check http status, if malign logout
         // If login was successful, set the token in local storage
-        localStorage.setItem('id_token', user.id_token);
+        localStorage.setItem('id_token', json.body.token);
         // Dispatch the success action
-        dispatch(receiveLogin(user));
-        return Promise.resolve(user);
+        dispatch(receiveLogin(json.body));
+        return Promise.resolve(json);
       })
       .catch(err => console.error('Error: ', err));
     } else {

@@ -45,10 +45,9 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      login: 'user',
-      password: 'password',
+      login: '',
+      password: '',
     };
   }
 
@@ -84,12 +83,11 @@ class Login extends React.Component {
           <div className={s.root}>
           <Row>
             <Col xs={{size: 10, offset: 1}} sm={{size: 6, offset: 3}} lg={{size:4, offset: 4}}>
-              <p className="text-center">React Dashboard</p>
+              <p className="text-center">Агентство ВиП</p>
               <Widget className={s.widget}>
-                <h4 className="mt-0">Login to your Web App</h4>
+                <h4 className="mt-0">Вход в панель управления</h4>
                 <p className="fs-sm text-muted">
-                  User your username and password to sign in<br />
-                  Don&#39;t have an account? Sign up now!
+                  Введите email и пароль для того, чтобы войти в аккаунт<br />
                 </p>
                 <Form className="mt" onSubmit={this.doLogin}>
                   {this.props.errorMessage && (
@@ -105,7 +103,7 @@ class Login extends React.Component {
                       type="text"
                       required
                       name="username"
-                      placeholder="Username"
+                      placeholder="Email"
                     />
                   </FormGroup>
                   <FormGroup>
@@ -116,17 +114,17 @@ class Login extends React.Component {
                       type="password"
                       required
                       name="password"
-                      placeholder="Password"
+                      placeholder="Пароль"
                     />
                   </FormGroup>
                   <div className="d-flex justify-content-between align-items-center">
-                    <a href="#" className="fs-sm">Trouble with account?</a> {/* eslint-disable-line */}
+                    <a href="#" className="fs-sm">Сброс пароля</a> {/* eslint-disable-line */}
                     <div>
                       <Button color="default" size="sm">
-                        Create an account
+                        Создать аккаунт
                       </Button>
                       <Button color="success" size="sm" type="submit">
-                        {this.props.isFetching ? 'Loading...' : 'Login'}
+                        {this.props.isFetching ? 'Вход...' : 'Войти'}
                       </Button>
                     </div>
                   </div>

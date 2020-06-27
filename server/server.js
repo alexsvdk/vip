@@ -1,14 +1,5 @@
-import express from 'express'
-import helmet from 'helmet';
-import jwt from 'jsonwebtoken';
-import cookieParser from 'cookie-parser';
-import expressJwt from 'express-jwt';
-import expressGraphQL from 'express-graphql';
-import schema from '../src/data/schema'
-import dotenv from 'dotenv';
-import config from './config';
 
-
+/*
 const app = express();
 app.use(helmet());
 app.use(cookieParser());
@@ -70,3 +61,4 @@ process.on('unhandledRejection', (err, promise) => {
   // Close server 
   server.close(() => process.exit(1))
 })
+*/
