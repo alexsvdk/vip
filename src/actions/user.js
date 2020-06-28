@@ -1,4 +1,5 @@
 import appConfig from '../config';
+import Login from "../pages/login";
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -75,20 +76,23 @@ export function loginUser(creds) {
     return fetch(appConfig.baseURLApi+'/auth', config)
       .then(response => response.json().then(json => ({ json, response })))
       .then(({ json, response }) => {
-        if (!response.ok) {
+        if (json.code !== 200) {
           // If there was a problem, we want to
           // dispatch the error condition
+
+          alert(json.body.error)
           dispatch(loginError(json.body.error));
-          return Promise.reject(json.body);
+          return Promise.reject(json);
         }
         // in posts create new action and check http status, if malign logout
         // If login was successful, set the token in local storage
         localStorage.setItem('id_token', json.body.token);
+        Login.logout = false
         // Dispatch the success action
         dispatch(receiveLogin(json.body));
         return Promise.resolve(json);
       })
-      .catch(err => console.error('Error: ', err));
+      .catch(err => dispatch(loginError(err.toString())));
     } else {
       localStorage.setItem('id_token', appConfig.id_token);
       dispatch(receiveLogin({id_token: appConfig.id_token}))

@@ -14,11 +14,14 @@ import {
 import s from './Login.module.scss';
 import Widget from '../../components/Widget';
 import Footer from "../../components/Footer";
-import { loginUser } from '../../actions/user';
+import {loginUser, logoutUser} from '../../actions/user';
 import jwt from 'jsonwebtoken';
 import config from '../../config'
 
 class Login extends React.Component {
+
+  static logout = false
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
@@ -35,12 +38,18 @@ class Login extends React.Component {
   };
 
   static isAuthenticated(token) {
-    // We check if app runs with backend mode
-    if (!config.isBackend && token) return true;
-    if (!token) return;
-    const date = new Date().getTime() / 1000;
-    const data = jwt.decode(token);
-    return date < data.exp;
+    const cfg = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({token, body: "check"}),
+    };
+
+    fetch(config.baseURLApi + '/checkToken', cfg).then((res) => res.json()).then(json => {
+      this.logout = json.code!==200
+    })
+
+    return (!this.logout && token)
 }
 
   constructor(props) {
@@ -83,9 +92,9 @@ class Login extends React.Component {
           <div className={s.root}>
           <Row>
             <Col xs={{size: 10, offset: 1}} sm={{size: 6, offset: 3}} lg={{size:4, offset: 4}}>
-              <p className="text-center">Агентство ВиП</p>
+              <p className="text-center">Агентство ВиП - Панель управления</p>
               <Widget className={s.widget}>
-                <h4 className="mt-0">Вход в панель управления</h4>
+                <h4 className="mt-0">Вход</h4>
                 <p className="fs-sm text-muted">
                   Введите email и пароль для того, чтобы войти в аккаунт<br />
                 </p>

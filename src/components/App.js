@@ -13,16 +13,19 @@ import Login from '../pages/login';
 import Register from '../pages/register';
 import { logoutUser } from '../actions/user';
 
-const PrivateRoute = ({dispatch, component, ...rest }) => {
-    if (!Login.isAuthenticated(localStorage.getItem('id_token'))) {
-        dispatch(logoutUser());
-        return (<Redirect to="/login"/>)
-    } else {
+class PrivateRoute extends React.Component{
+
+    render(){
+        if (!Login.isAuthenticated(localStorage.getItem('id_token')))
+            return (<Redirect to="/login"/>)
+     else {
         return ( // eslint-disable-line
-            <Route {...rest} render={props => (React.createElement(component, props))}/>
+            <Route {...this.props.rest} render={props => (React.createElement(this.props.component, props))}/>
         );
     }
 };
+
+}
 
 const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-close notifications-close"/>
 
