@@ -16,8 +16,10 @@ import { logoutUser } from '../actions/user';
 class PrivateRoute extends React.Component{
 
     render(){
-        if (!Login.isAuthenticated(localStorage.getItem('id_token')))
+        if (!Login.isAuthenticated(localStorage.getItem('id_token'))) {
+            localStorage.clear()
             return (<Redirect to="/login"/>)
+        }
      else {
         return ( // eslint-disable-line
             <Route {...this.props.rest} render={props => (React.createElement(this.props.component, props))}/>

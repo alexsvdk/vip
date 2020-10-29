@@ -11,7 +11,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 
-import Widget from '../../components/Widget';
+import Widget from '../../components/Widget/Widget';
 
 class Buttons extends React.Component {
   constructor(props) {

@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import Widget from '../../../components/Widget';
+import Widget from '../../../components/Widget/Widget';
 
 import { createPost } from '../../../actions/posts';
 import s from './PostNew.module.scss';

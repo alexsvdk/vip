@@ -29,6 +29,8 @@ import Notifications from '../../pages/notifications'
 import Posts from '../../pages/posts'
 import Profile from '../../pages/profile'
 import Privacy from '../../pages/privacy'
+import Areas from "../../pages/areas";
+import Tetants from "../../pages/tetants";
 
 class Layout extends React.Component {
   constructor(props) {
@@ -56,6 +58,9 @@ class Layout extends React.Component {
           <main className={s.content}>
             <Switch>
               <Route path="/app/main" exact component={Dashboard} />
+              <Route path="/app/areas" exact component={Areas} />
+              <Route path="/app/tetants" exact component={Tetants}/>
+
               <Route path="/app/typography" exact component={Typography} />
               <Route path="/app/tables" exact component={Tables} />
               <Route path="/app/posts" component={Posts} />

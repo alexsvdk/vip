@@ -16,48 +16,56 @@ const Sidebar = () => (
     </header>
     <ul className={s.nav}>
       <LinksGroup
-        header="Dashboard"
+        header="Главная"
         headerLink="/app/main"
         glyph="dashboard"
       />
-      <LinksGroup
-        header="Typography"
-        headerLink="/app/typography"
-        glyph="typography"
-      />
-      <LinksGroup
-        header="Tables Basic"
-        headerLink="/app/tables"
-        glyph="tables"
-      />
-      <LinksGroup
-        header="Notifications"
-        headerLink="/app/notifications"
-        glyph="notifications"
-      />
-      <LinksGroup
-        header="Components"
-        headerLink="/app/components"
-        childrenLinks={[
-          {
-            name: 'Buttons',
-            link: '/app/components/buttons',
-          },
-          {
-            name: 'Charts',
-            link: '/app/components/charts',
-          },
-          {
-            name: 'Icons',
-            link: '/app/components/icons',
-          },
-          {
-            name: 'Maps',
-            link: '/app/components/maps',
-          },
+        {parseInt(localStorage.getItem('user_role'))>=2 && <LinksGroup
+            header="Площади"
+            headerLink="/app/areas"
+            glyph="typography"
+        />}
+
+        {parseInt(localStorage.getItem('user_role'))>=2 && <LinksGroup
+            header="Арендаторы"
+            headerLink="/app/tetants"
+            glyph="typography"
+        />}
+
+
+        {/*<LinksGroup
+            header="Tetants Basic"
+            headerLink="/app/tables"
+            glyph="tables"
+        />
+            <LinksGroup
+            header="Notifications"
+            headerLink="/app/notifications"
+            glyph="notifications"
+            />
+            <LinksGroup
+            header="Components"
+            headerLink="/app/components"
+            childrenLinks={[
+            {
+                name: 'Buttons',
+                link: '/app/components/buttons',
+            },
+            {
+                name: 'Charts',
+                link: '/app/components/charts',
+            },
+            {
+                name: 'Icons',
+                link: '/app/components/icons',
+            },
+            {
+                name: 'Maps',
+                link: '/app/components/maps',
+            },
         ]}
-        glyph="components"
-      />
+            glyph="components"
+            />*/}
     </ul>
   </nav>
 );

@@ -10,7 +10,7 @@ import {
 import { mock } from './mock'
 
 import s from './PostList.module.scss';
-import Widget from '../../../components/Widget';
+import Widget from '../../../components/Widget/Widget';
 import { fetchPosts } from '../../../actions/posts';
 
 class PostList extends React.Component {

@@ -15,7 +15,6 @@ import s from './Login.module.scss';
 import Widget from '../../components/Widget';
 import Footer from "../../components/Footer";
 import {loginUser, logoutUser} from '../../actions/user';
-import jwt from 'jsonwebtoken';
 import config from '../../config'
 
 class Login extends React.Component {
@@ -47,6 +46,7 @@ class Login extends React.Component {
 
     fetch(config.baseURLApi + '/checkToken', cfg).then((res) => res.json()).then(json => {
       this.logout = json.code!==200
+      if (this.logout) localStorage.clear()
     })
 
     return (!this.logout && token)

@@ -22,7 +22,7 @@ import {
 } from 'reactstrap';
 import { mock } from './mock'
 
-import Widget from '../../components/Widget';
+import Widget from '../../components/Widget/Widget';
 
 import { fetchPosts } from '../../actions/posts';
 import s from './Dashboard.module.scss';
@@ -65,10 +65,10 @@ class Dashboard extends Component {
     return (
       <div className={s.root}>
         <Breadcrumb>
-          <BreadcrumbItem>YOU ARE HERE</BreadcrumbItem>
-          <BreadcrumbItem active>Dashboard</BreadcrumbItem>
+          <BreadcrumbItem>АГЕНТЫ ВИП</BreadcrumbItem>
+          <BreadcrumbItem active>Главная</BreadcrumbItem>
         </Breadcrumb>
-        <h1 className="mb-lg">Dashboard</h1>
+        <h1 className="mb-lg">Главная</h1>
         <Row>
           <Col sm={12} md={6}>
             <Widget

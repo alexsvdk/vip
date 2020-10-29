@@ -28,7 +28,7 @@ import { NavLink } from 'react-router-dom';
 
 import Icon from '../Icon';
 
-import photo from '../../images/photo.jpg';
+import photo from '../../images/photo.png';
 import { logoutUser } from '../../actions/user';
 import s from './Header.module.scss';
 
@@ -52,6 +52,7 @@ class Header extends React.Component {
 
   doLogout = () => {
     this.props.dispatch(logoutUser());
+    window.location.replace("/#/login")
   }
 
   render() {
@@ -76,38 +77,43 @@ class Header extends React.Component {
           </NavItem>
         </Nav>
         <Nav className="ml-auto">
-          <NavItem className={cx('', s.headerIcon)}>
+
+          {
+            /*<NavItem className={cx('', s.headerIcon)}>
             <Button>
               <Icon glyph="mail"/>
               <span>8</span>
             </Button>
           </NavItem>
-          <NavItem className={cx('', s.headerIcon)}>
+            <NavItem className={cx('', s.headerIcon)}>
             <Button>
-              <Icon glyph="notification"/>
-              <span>13</span>
+            <Icon glyph="notification"/>
+            <span>13</span>
             </Button>
-          </NavItem>
-          <NavItem className={cx('', s.headerIcon)}>
+            </NavItem>
+            <NavItem className={cx('', s.headerIcon)}>
             <Button>
-              <Icon glyph="settings"/>
+            <Icon glyph="settings"/>
             </Button>
-          </NavItem>
+            </NavItem>*/
+          }
           <Dropdown isOpen={isOpen} toggle={this.toggleDropdown}>
             <DropdownToggle nav>
               <img className={cx('rounded-circle mr-sm', s.adminPhoto)} src={photo} alt="administrator" />
-              <span className="text-body">Administrator</span>
+              <span className="text-body">{localStorage.getItem('user_email')}</span>
               <i className={cx('fa fa-angle-down ml-sm', s.arrow, {[s.arrowActive]: isOpen})} />
             </DropdownToggle>
             <DropdownMenu style={{width: '100%'}}>
-              <DropdownItem>
+              {/*
+                <DropdownItem>
                 <NavLink to="/app/posts">Posts</NavLink>
               </DropdownItem>
-              <DropdownItem>
+                <DropdownItem>
                 <NavLink to="/app/profile">Profile</NavLink>
-              </DropdownItem>
+                </DropdownItem>
+             */ }
               <DropdownItem onClick={this.doLogout}>
-                Logout
+                Выход
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>

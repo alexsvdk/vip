@@ -1,0 +1,47 @@
+@import '../../../styles/app';
+
+.widget {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+  padding: $widget-padding-y $widget-padding-x;
+  background: $widget-bg;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 1.5rem / 2;
+  color: $widget-title-color;
+
+  @include clearfix();
+}
+
+.mainForm {
+  margin: auto;
+  width: 90%;
+  align-content: center;
+
+  img{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+
+  .linput {
+    display: block;
+    width: 100%;
+
+  }
+
+  .inputbig{
+    display: block;
+    width: 100%;
+    height: 150px;
+  }
+
+  .llabel{
+    color: darken(coral, 25);
+    font-size: 17px;
+    display: block;
+  }
+}

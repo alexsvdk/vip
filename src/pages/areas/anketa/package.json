@@ -1,6 +1,6 @@
 {
-  "name": "Widget",
+  "name": "Anketa",
   "version": "0.0.0",
   "private": true,
-  "main": "Widget.js"
+  "main": "Anketa.js"
 }

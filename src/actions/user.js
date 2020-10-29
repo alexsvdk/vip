@@ -56,6 +56,9 @@ export function logoutUser() {
   return dispatch => {
     dispatch(requestLogout());
     localStorage.removeItem('id_token');
+    localStorage.removeItem('user_role');
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('fio');
     document.cookie = 'id_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     dispatch(receiveLogout());
   };
@@ -72,7 +75,6 @@ export function loginUser(creds) {
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
-    if(process.env.NODE_ENV === "development") {
     return fetch(appConfig.baseURLApi+'/auth', config)
       .then(response => response.json().then(json => ({ json, response })))
       .then(({ json, response }) => {
@@ -87,15 +89,15 @@ export function loginUser(creds) {
         // in posts create new action and check http status, if malign logout
         // If login was successful, set the token in local storage
         localStorage.setItem('id_token', json.body.token);
+        localStorage.setItem('user_role', json.body.user.role);
+        localStorage.setItem('user_email', json.body.user.email);
+        localStorage.setItem('fio', json.body.user.fio);
+        localStorage.setItem('id', json.body.user._id);
         Login.logout = false
         // Dispatch the success action
         dispatch(receiveLogin(json.body));
         return Promise.resolve(json);
       })
       .catch(err => dispatch(loginError(err.toString())));
-    } else {
-      localStorage.setItem('id_token', appConfig.id_token);
-      dispatch(receiveLogin({id_token: appConfig.id_token}))
-    }
   };
 }

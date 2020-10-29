@@ -1,0 +1,62 @@
+@import '../../styles/app';
+
+.mainTable {
+  td,
+  thead {
+    border-top: 1px solid $gray-200;
+    padding: 1.25rem 1rem;
+  }
+
+  thead th {
+    color: theme-color('light');
+    text-transform: uppercase;
+  }
+
+  tr{
+
+    &:hover{
+      color: lightcoral;
+    }
+
+    &.green{
+      background-color: lighten(lightgreen,10);
+    }
+
+    &.yellow{
+      background-color: lighten(orange, 35)
+    }
+
+    &.red{
+      background-color: lighten(red,35);
+    }
+
+    &.selected{
+      background-color: lighten(blue,40);
+      &:hover{
+        color: black;
+      }
+    }
+  }
+}
+
+.scrollable{
+  overflow:auto;
+  height: 500px;
+}
+
+.searchForm{
+
+  .block{
+    display: inline-block;
+    margin-right: 16px;
+    &{
+      display: inline-block
+    }
+  }
+
+  .mini{
+    width: 75px;
+  }
+
+
+}
